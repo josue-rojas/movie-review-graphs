@@ -1,0 +1,81 @@
+/* index */
+@import './colors.sass'
+@import './mixins.sass'
+body
+  margin: 0
+  padding: 0
+  font-size: 1rem
+  font-weight: 400
+  line-height: 1.5
+  color: $main-color
+  background-color: #081c24
+
+html
+  box-sizing: border-box
+  font-family: sans-serif
+  line-height: 1.15
+  -webkit-text-size-adjust: 100%
+  -ms-text-size-adjust: 100%
+  -ms-overflow-style: scrollbar
+  -webkit-tap-highlight-color: transparent
+
+a
+  color: #b4e7e0
+  &:hover
+    color: $hover-color
+a, a:hover
+  text-decoration: none
+
+*,
+*::before,
+*::after
+  box-sizing: inherit
+
+.main .input-wrapper
+  width: 100%
+  padding: 10px 3px
+  .search-input
+    margin: auto
+    display: block
+    margin-bottom: 7px
+  .search-button
+    color: $main-green
+    border-radius: 0
+    margin: auto
+    display: block
+    border: 1px solid $main-green
+    border-radius: 5px
+    // width: 90px
+    background: none
+    padding: 5px 10px
+    font: inherit
+    cursor: pointer
+    outline: inherit
+    letter-spacing: .04rem
+
+// TODO better design for eacg movie
+.movie-results
+  width: 100%
+  display: flex
+  flex-wrap: wrap
+  .movie-wrapper
+    width: 100%
+    padding: 0 0 15px
+    border: 1px solid $lines-border
+    border-top: 0
+    background-color: white
+    cursor: pointer
+    +medium-devices
+      width: 33.33333%
+    +large-devices
+      width: 20%
+  .image-wrapper
+    max-height: 285px
+    width: 100%
+    // border-bottom: 1px solid $lines-border
+    .movie-poster
+      display: block
+      margin: auto
+  .title
+    width: 100%
+    text-align: center

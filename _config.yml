@@ -1,0 +1,5 @@
+name: Josue Rojas' Portfolio
+markdown: kramdown
+sass:
+    style: compressed
+    sass_dir: _sass
