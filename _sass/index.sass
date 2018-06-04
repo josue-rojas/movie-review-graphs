@@ -45,7 +45,6 @@ a, a:hover
     display: block
     border: 1px solid $main-green
     border-radius: 5px
-    // width: 90px
     background: none
     padding: 5px 10px
     font: inherit
@@ -53,14 +52,14 @@ a, a:hover
     outline: inherit
     letter-spacing: .04rem
 
-// TODO better design for eacg movie
+// TODO better design for each movie
 .movie-results
   width: 100%
   display: flex
   flex-wrap: wrap
   .movie-wrapper
     width: 100%
-    padding: 0 0 15px
+    // padding: 0 0 15px
     border: 1px solid $lines-border
     border-top: 0
     background-color: white
@@ -70,12 +69,35 @@ a, a:hover
     +large-devices
       width: 20%
   .image-wrapper
-    max-height: 285px
+    max-height: 104px
     width: 100%
-    // border-bottom: 1px solid $lines-border
     .movie-poster
+      width: 100%
+      height: 104px
+      background-position: center
+      background-size: cover
       display: block
       margin: auto
-  .title
-    width: 100%
-    text-align: center
+  .info-wrapper
+    padding: 5px 0
+    .title
+      color: black
+    .title, .date
+      width: 100%
+      text-align: center
+
+.word-graph-wrapper
+  // display: table
+  // position: relative
+  // column-count: 20
+  // column-gap: 0px
+  // text-align: center
+  display: flex
+  align-content: flex-start
+  // justify-content: flex-start
+  justify-content: center
+  // align-items: center
+  flex-wrap: wrap
+  // div
+  //   display: inline-block
+    // position: absolute
