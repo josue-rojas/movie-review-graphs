@@ -1,3 +1,6 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,8 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <link rel='stylesheet' href='index.css'/>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+    <script src="lib/d3/d3.js"></script>
+    <script src="lib/d3/d3.layout.cloud.js"></script>
+    <script src="d3.wordcloud.js"></script>
+    <script src="example.words.js"></script>
     <title>Movie Reviews Graph</title>
   </head>
   <body>
@@ -17,7 +24,10 @@
       </div>
     </div>
     <div class='movie-results'></div>
-    <div class='word-graph'></div>
+    <div class='word-graph-wrapper'></div>
+    <!-- TODO add tmdb logo and footer -->
+     <!-- {% include TBDB.svg %} -->
+     <div id='wordcloud'></div>
   </body>
   <script src='index.js'></script>
 </html>
