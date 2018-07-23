@@ -56,6 +56,7 @@ function showWordGraph(id) {
   // make sure everything is clear (cause working with one page)
   // TODO: might make this display none just to have a back button, maybe
   $('.movie-results').empty();
+  $('.word-graph-wrapper').empty();
   window.location.hash = id;
   const MOVIE_REVIEW_API_URL = `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${MBDB_KEY}`
   fetch(MOVIE_REVIEW_API_URL)
@@ -66,7 +67,7 @@ function showWordGraph(id) {
     for(let i = 0; i < data.results.length; i++){
       // TODO split to ignore special characters
       // TODO add words to ignore such as the or a
-      const WORDS = data.results[i].content.split(' ');
+      const WORDS = data.results[i].content.match(/\b(\w+)\b/g);
       for(let j = 0; j < WORDS.length; j++){
         total_words++;
         const single_word = WORDS[j].toLowerCase();
@@ -78,18 +79,30 @@ function showWordGraph(id) {
         }
       }
     }
-    let words = Object.keys(WORD_COUNT)
-    let word_holder = d3.select('.word-graph-wrapper');
-    // console.log(word_holder)
-    // return
-    // let word_graph = word_holder.append('span');
-    let word_graph = word_holder.selectAll('span')
-    .data(words, function(d){return d})
-    .enter().append('span')
-    .text(function(d){return d})
-    .style('font-size', function(d){console.log(WORD_COUNT[d]);return `${1+WORD_COUNT[d]*.4}rem`})
-    .style('flex-grow', '1')
-    .style('display', 'table')
-    // TODO word graph should be made by a word having their rectangular box around be measure or just get the witdth and heigh and fit each word like a tetris game..........easy peasy
+    // TODO: add more common words
+    let commons = ['for', 'the', 'a', 'if', 'has', 'is', 'of', 'it', 'was', 'and', 'this', 'in', 'so'];
+    for(let i = 0; i < commons.length; i++){
+      delete WORD_COUNT[commons[i]];
+    }
+    let words = Object.keys(WORD_COUNT);
+    let WORDS_FORMAT = [];
+    // TODO remove this and do formatting in the upper for loops (this is  a waste of loop)
+    for(let i = 0; i < words.length; i++){
+      WORDS_FORMAT.push({
+        text: words[i], size: WORD_COUNT[words[i]]
+      });
+    }
+    // sort is needed for the word cloud to work. it takes a sorted array (this adds another loop)
+    WORDS_FORMAT.sort((a, b)=>{
+      return b.size - a.size;
+    })
+    // TODO make it resize for smaller screens and bigger
+    d3.wordcloud()
+        .size([800, 400])
+        .selector('.word-graph-wrapper')
+        .words(WORDS_FORMAT)
+        .start();
+
+    // TODO word graph should be made by a word having their rectangular box around be measure or just get the witdth and heigh and fit each word like a tetris game..........easy peasy... (i instead decided to use library already made)
   });
 }
